@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}ABC{% endblock %}
+
+{% block content %}
+<style>
+    .img_test {
+        width:  700px;
+        height: 400px;
+    }
+</style>
+<section id="gtco-special-dishes" class="section-padding">
+    <div class="container">
+        <div class="section-content">
+            <div class="heading-section text-center">
+                <h2>{{singlepost.title}}</h2>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-5 col-md-6 align-self-center py-5">
+                    
+                    <div class="dishes-text">
+                        <h6>Category:</h6>
+                        <h3><span>{{singlepost.cat}}</span></h3> <h6>Dish name:</h6><h3>{{singlepost.dishname}}</h3>
+                        <h6>Average Price:</h6>
+                        <h3 class="special-dishes-price">₹{{singlepost.averageprice}}</h3><br>
+                        <h5>AUTHOR - <span class="subheading">{{singlepost.author}}</span></h5>
+                        <span class="subheading">{{singlepost.upload_at}}</span><br>
+                        
+                        
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-2 col-md-6 align-self-center mt-4 mt-md-0">
+                    <img src="/media/{{singlepost.image}}" alt="" class="img-fluid shadow w-100 img_test">
+                </div>
+            </div>
+            <span class="lnr lnr-bubble"></span>
+            <h5>
+                {{singlepost.content|safe}}
+            </h5>
+
+
+<br><br>
+
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-lg-5">
+            <div class="section-content bg-white p-5 shadow">
+                <div class="heading-section text-center">
+                    
+                            <h2>
+                            FEEL FREE TO LEAVE A COMMENT 
+                            </h2>
+                </div>
+                <form method="post" name="commented" action="">
+                {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                        </div>
+                        <div class="col-md-12 form-group">
+                        <textarea class="form-control" id="message" name="message" rows="6" placeholder="Your Message ..." required></textarea>
+                        </div>
+                        <div class="col-md-12 text-center">
+                        <button class="btn btn-primary btn-shadow btn-lg" type="submit" name="submit">Send Message</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="footer-widget pr-lg-5 pr-0">
+                {% for pcom in allcomm%}
+                    <div class="section-content bg-white p-2 shadow">
+                        <span class="subheading">
+                            <h4>{{pcom.commname}}</h4>
+                        </span> <b>commented</b> {{pcom.commsec}}
+                    </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

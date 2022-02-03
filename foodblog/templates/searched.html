@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}this is searched{% endblock %}
+
+{% block content %}
+
+<section id="gtco-team" class="bg-white section-padding">
+    <div class="container">
+        <div class="section-content">
+            <div class="heading-section text-center">
+                <span class="subheading">
+                    
+                </span>
+                <h2>
+                    
+                </h2>
+            </div>
+            <div class="row">
+              {% for post in allSearched%}
+              <div class="col-md-4">
+                  <div class="team-card mb-5">
+                      <img class="img-fluid" src="/media/{{post.image}}" alt="">
+                      <div class="team-desc">
+                          <h4 class="mb-0"><a href="{% url 'singleblog' post.slug %}" title="">{{post.title}} </a></h4>
+                          <p class="mb-1">{{post.created_at}} by {{post.author}}</p>
+                          <ul class="list-inline mb-0 team-social-links">
+                              <li class="list-inline-item">
+                                  <a href="https://www.instagram.com/phileinsophous/?hl=en">
+                                      <i class="fab fa-instagram"></i>
+                                  </a>
+                              </li>
+                              <li class="list-inline-item">
+                                  <a href="mailto:rookiegreyhat@gmail.com">
+                                      <i class="fab fa-google-plus-g"></i>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>{% endfor %}
+            </div>
+        </div>
+    </div>
+  </section>
+  
+{% endblock %}
